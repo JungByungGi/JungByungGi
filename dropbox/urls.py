@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
-from user.views import RegisterView
+from user.views import RegisterView, ChangePasswordView, UpdateProfileView, UserListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh', TokenRefreshView.as_view()),
     path('api/token/verify', TokenVerifyView.as_view()),
-    path('register/', RegisterView.as_view())
+    path('register/', RegisterView.as_view()),
+    path('users/list', UserListView.as_view()),
+    path('users/password/<int:pk>', ChangePasswordView.as_view()),
+    path('users/profile/<int:pk>', UpdateProfileView.as_view()),
 ]
